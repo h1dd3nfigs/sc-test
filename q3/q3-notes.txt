@@ -1,0 +1,45 @@
+http://dbiweb.sfgov.org/dbipts/Default2.aspx?page=addressquery
+
+http://dbiweb.sfgov.org/dbipts/default.aspx?page=AddressData2&AddressID=298587,466579,66052
+
+http://dbiweb.sfgov.org/dbipts/default.aspx?page=AddressData2&ShowPanel=EID
+
+javascript:__doPostBack('InfoReq1$btnEidShowAll','')
+
+
+<a 
+href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl01','')">2</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl02','')">3</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl03','')">4</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl04','')">5</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl05','')">6</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl06','')">7</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl07','')">8</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl08','')">9</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl09','')">10</a>&nbsp;<a href="javascript:__doPostBack('InfoReq1$dgEID$ctl11$ctl10','')">...</a>
+
+<a id="InfoReq1_btnEidShowAll" href="javascript:__doPostBack('InfoReq1$btnEidShowAll','')">Show all</a>
+
+Per SO suggestion (http://stackoverflow.com/questions/14768302/scraping-data-from-all-asp-net-pages-with-ajax-pagination-implemented)
+
+1) Get the value of every single INPUT and SELECT element on the page. It might not be required in every scenario, but you should always at least get the values of all hidden fields where the name starts with "__" (such as __VIEWSTATE). You don't really need to know what is written in them - just that the value in them has to be sent back to the server unchanged.
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="EBE5C146" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDAKW1ZWRCgKa0cYuAprRui4CmtG+LgKa0bIuAprRti4CmtGqLgKa0a4uAprRoi4CmtGmLgKb0cIuAuuI3OkLU8JAarijk+2vNoASz3ow2OybaVc=" />
+
+
+
+2) Create a POST request to the server. You need to use the classic POST, avoiding any AJAX requests. Using some browser plugins (in Firefox or Chrome) it might be possible to disable XMLHttpRequest so you can then intercept the non-AJAX request with tools like Fiddler.
+
+3) Add every value from #1 to that post request. There are only two values you need to overwrite: __EVENTTARGET and __EVENTARGUMENT. You would leave those empty except if the link or button that you try to imitate has a onclick handler like <a href="javascript:__doPostBack('ctl00$login','')">. If it is, parse the values from this link - the first one is the event target (it usually will match the ID of some element on the page), the second is the event argument.
+
+4) If you executed the request correctly, you should get back HTML page. If you get a partial response, check if you didn't pass the HTTP header that asks for async result.
+
+WHEN I CLICK ELECTRICAL PERMITS THRU WEBSITE DIRECTLY
+COOKIE info is 
+Name:	ASP.NET_SessionId
+Content:	1vt4le45blt2v545hhbtgo55
+Domain:	dbiweb.sfgov.org
+Path:	/
+Send for:	Any kind of connection
+Accessible to script:	No (HttpOnly)
+Created:	Sunday, May 3, 2015 at 11:14:19 AM
+Expires:	When the browsing session ends
+
+WHEN I TRY TO CLICK ELECTRICAL PERMITS PROGRAMMATICALLY, 
+COOKIE info is
+Set-Cookie: ASP.NET_SessionId=w0fkg1rsu4knlznd0qiy51uo; path=/; HttpOnly
