@@ -11,8 +11,8 @@ function isOne($num)
 
 function consecutiveNumIndices($inputs)
 {
-	$deltas = array();
-	$remove_keys = array();
+	$deltas = array(); 
+	$remove_keys = array(); 
 
 	for($i = 0; $i < count($inputs)-1; $i++)
 	{

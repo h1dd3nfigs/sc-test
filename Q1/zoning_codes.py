@@ -38,7 +38,6 @@ R10A
 R10X
 '''
 gen_res_list = general_residence_districts.split()
-#print(gen_res_list)
 
 commercial_districts = '''
 C1-6
